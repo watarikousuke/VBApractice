@@ -1,0 +1,23 @@
+Sub Post()
+  ''既に書いてある情報を一行下にずらす←間違い。最終行に一つずつ新しく転記する
+  'Range("A13:F13").Cut Range("A14:F14")
+  
+  '最終行の変数を作る
+  Dim lastRow As Long
+  lastRow = Cells(Rows.Count, 1).End(xlUp).Row
+  lastRow = lastRow + 1
+  
+  'C3~C8に書いてある情報を最終行に転記する
+  Range("A" & lastRow).Value = Range("C3").Value
+  Range("B" & lastRow).Value = Range("C4").Value
+  Range("C" & lastRow).Value = Range("C5").Value
+  Range("D" & lastRow).Value = Range("C6").Value
+  Range("E" & lastRow).Value = Range("C7").Value
+  Range("F" & lastRow).Value = Range("C8").Value
+End Sub
+
+Sub Clear()
+
+    Range("C4,C6,C7").ClearContents
+
+End Sub
