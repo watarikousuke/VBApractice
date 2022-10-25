@@ -1,0 +1,9 @@
+Sub Clear()
+  Dim MsgDelete
+  MsgDelete = MsgBox("選択範囲の数値を消去してよろしいでしょうか？", vbYesNo)
+  If MsgDelete = vbYes Then
+    Selection.ClearContents
+  Else
+    MsgBox "キャンセルされました。"
+  End If
+End Sub
