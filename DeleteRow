@@ -1,0 +1,20 @@
+Sub DeleteRow()
+
+  '(2, 7)から(一番下, 7)を選択する
+  Dim maxRow As Long
+  maxRow = Cells(Rows.Count, 1).End(xlUp).Row
+  
+  Range(Cells(maxRow, 7), Cells(2, 7)).Select
+  
+  'fot文を使って最初から一番下の行まで調べる
+  Dim i As Long
+  For i = 2 To maxRow
+    If Cells(i, 7).Value = "d" Then
+      Rows(i).delete
+    End If
+  Next i
+  
+  'セルにdが入っていたら消去という消去というif文での条件式を作る
+  
+
+End Sub
