@@ -1,0 +1,25 @@
+Sub Copy()
+
+  'コピー元の最終行を取得する
+  Dim maxRow As Long
+  maxRow = Cells(Rows.Count, 8).End(xlUp).Row
+  
+  '一行もなかった場合のバグ対策　答えを参照
+  If maxRow = 1 Then
+   Exit Sub
+  End If
+  
+  'コピー範囲を決めコピーする
+  Range(Cells(maxRow, 13), Cells(2, 8)).Copy
+  
+  
+  
+  
+  'ペースト先の最終行を取得する
+  Dim maxRowPaste As Long
+  maxRowPaste = Cells(Rows.Count, 1).End(xlUp).Row
+  
+  'ペースト先の範囲を指定しペーストする
+  Range(Cells(maxRowPaste + 1, 1), Cells((maxRowPaste + 1) + (maxRow - 2), 6)).PasteSpecial
+
+End Sub
