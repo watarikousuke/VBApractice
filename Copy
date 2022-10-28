@@ -10,7 +10,7 @@ Sub Copy()
   End If
   
   'コピー範囲を決めコピーする
-  Range(Cells(maxRow, 13), Cells(2, 8)).Copy
+  Range(Cells(maxRow, 13), Cells(2, 8)).Cut
   
   
   
