@@ -1,0 +1,26 @@
+Sub integrate()
+  
+  'コピー元(Source)、コピー先(Destination)の最終行
+  Dim sMaxRow As Long
+  Dim dMaxRow As Long
+  
+  '繰り返し
+  Dim i As Long
+  For i = 1 To Sheets.Count
+  
+    'もし名前が総合シートでなければ実行
+    If Sheets(i).Name <> "統合シート" Then
+      
+      '最終行を取得する
+      sMaxRow = Sheets(i).Cells(Rows.Count, 1).End(xlUp).Row
+      dMaxRow = Sheets("統合シート").Cells(Rows.Count, 1).End(xlUp).Row
+      
+      'データをコピーする
+      Sheets(i).Range("A2:F" & sMaxRow).Copy Destination:= _
+      Sheets("統合シート").Range("A" & dMaxRow + 1)
+      
+    End If
+  
+  Next i
+  
+End Sub
