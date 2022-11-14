@@ -1,0 +1,59 @@
+Sub Summary()
+
+    Dim awb As Workbook
+    Set awb = ThisWorkbook
+    
+    ueno = ThisWorkbook.Path & "\上野店売上報告.xlsx"
+    shinjuku = ThisWorkbook.Path & "\新宿店売上報告.xlsx"
+    ikebukuro = ThisWorkbook.Path & "\池袋店売上報告.xlsx"
+    shibuya = ThisWorkbook.Path & "\渋谷店売上報告.xlsx"
+    
+    Workbooks.Open fileName:=ueno
+    Workbooks.Open fileName:=shinjuku
+    Workbooks.Open fileName:=ikebukuro
+    Workbooks.Open fileName:=shibuya
+    
+    Dim uewb, shinwb, ikewb, shiwb As Workbook
+    Set uewb = Workbooks("上野店売上報告.xlsx")
+    Set shinwb = Workbooks("新宿店売上報告.xlsx")
+    Set ikewb = Workbooks("池袋店売上報告.xlsx")
+    Set shiwb = Workbooks("渋谷店売上報告.xlsx")
+    
+    'マクロがあるシートのデータが入っているシートをアクティブ化
+    awb.Worksheets("Sheet2").Activate
+    
+    '売上の年月度を入力
+    awb.Worksheets("Sheet2").Range("B4").Value = uewb.Worksheets("Sheet1").Range("C4").Value
+    awb.Worksheets("Sheet2").Range("C4").Value = uewb.Worksheets("Sheet1").Range("D4").Value
+    
+    uewb.Worksheets("Sheet1").Range("I4:I8").Copy awb.Worksheets("Sheet2").Range("I4:I8")
+    shinwb.Worksheets("Sheet1").Range("I4:I8").Copy awb.Worksheets("Sheet2").Range("I13:I17")
+    ikewb.Worksheets("Sheet1").Range("I4:I8").Copy awb.Worksheets("Sheet2").Range("I22:I26")
+    shiwb.Worksheets("Sheet1").Range("I4:I8").Copy awb.Worksheets("Sheet2").Range("I31:I35")
+    'データ入力は↑までで終了で次からは保存処理とエクセルの終了処理
+    
+    'データを取得したブックを全て保存せず閉じる
+    Application.DisplayAlerts = False
+    Workbooks("上野店売上報告.xlsx").Close
+    Workbooks("新宿店売上報告.xlsx").Close
+    Workbooks("池袋店売上報告.xlsx").Close
+    Workbooks("渋谷店売上報告.xlsx").Close
+    Application.DisplayAlerts = True
+    
+    
+    '保存名の自動入力ができたらしたい
+    Dim file As String
+    'Dim hozonPath As String
+    
+    'hozonPath = awb.Worksheets("Sheet2").Range("B1").Value
+    file = "全店舗売上高" & awb.Worksheets("Sheet2").Range("B4").Value & awb.Worksheets("Sheet2").Range("C4").Value & ".xlsm"
+    
+    'Debug.Print file
+    'Debug.Print hozonPath
+    'Debug.Print ThisWorkbook.Path
+    
+    awb.SaveAs fileName:=ThisWorkbook.Path & "\" & file
+    ThisWorkbook.Close
+
+End Sub
+
