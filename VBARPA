@@ -63,11 +63,8 @@ Sub Summary()
     'ActiveWorkbook.SaveAs fileName:=hozonPath & file
     'ActiveWorkbook.Close
     'Workbooks("東京都内各店舗売上高（テストVBA）.xlsm").Worksheets("Sheet1").Active
-    Workbooks("東京都内各店舗売上高（テストVBA）.xlsm").Save
     ActiveWorkbook.Close True, "C:\Users\watar\OneDrive\デスクトップ\各店舗売上高" & file
     Application.DisplayAlerts = True
     Application.Quit
 
 End Sub
-
-
